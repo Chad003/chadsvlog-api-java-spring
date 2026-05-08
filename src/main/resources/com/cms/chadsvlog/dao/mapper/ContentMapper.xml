@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.chadsvlog.dao.mapper.ContentMapper">
+    <resultMap id="posts" type="com.cms.chadsvlog.dao.entities.Post">
+        <result column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="TITLE" property="title" jdbcType="VARCHAR"/>
+        <result column="MESSAGE" property="message" jdbcType="VARCHAR"/>
+        <result column="HERO_IMAGE_SOURCE" property="heroImageSource" jdbcType="VARCHAR"/>
+        <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="REPLY_COUNT" property="replyCount" jdbcType="INTEGER"/>
+        <result column="CREATED_DATE" property="createdDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="getPosts" resultMap="posts">
+        SELECT
+        p.ID,
+        p.TITLE,
+        p.MESSAGE,
+        p.HERO_IMAGE_SOURCE,
+        p.REPLY_COUNT,
+        u.USERNAME AS CREATED_BY,
+        p.CREATED_DATE
+        FROM t_posts p
+        LEFT JOIN t_users u
+        ON p.CREATED_BY = u.ID
+        ORDER BY p.CREATED_DATE DESC
+    </select>
+</mapper>
