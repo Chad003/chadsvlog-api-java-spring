@@ -25,4 +25,19 @@
         ON p.CREATED_BY = u.ID
         ORDER BY p.CREATED_DATE DESC
     </select>
+
+    <select id="getPostById" resultMap="posts">
+        SELECT
+        p.ID,
+        p.TITLE,
+        p.MESSAGE,
+        p.HERO_IMAGE_SOURCE,
+        p.REPLY_COUNT,
+        u.USERNAME AS CREATED_BY,
+        p.CREATED_DATE
+        FROM t_posts p
+        LEFT JOIN t_users u
+        ON p.CREATED_BY = u.ID
+        WHERE p.ID = #{id, jdbcType=INTEGER}
+    </select>
 </mapper>
