@@ -14,7 +14,7 @@ public class PostResponse {
     private int id;
     private String title;
     private String message;
-    private String heroImageSource;
+//    private String heroImageSource;
     private String createdBy;
     private int replyCount;
     private LocalDateTime createdDate;

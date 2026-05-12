@@ -11,7 +11,7 @@
         <result column="CREATED_DATE" property="createdDate" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <select id="getPosts" resultMap="posts">
+    <select id="getPostsList" resultMap="posts">
         SELECT
         p.ID,
         p.TITLE,
